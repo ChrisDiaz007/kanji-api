@@ -79,6 +79,4 @@ test:
 #
 production:
   <<: *default
-  database: kanji_api_production
-  username: kanji_api
-  password: <%= ENV["KANJI_API_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
