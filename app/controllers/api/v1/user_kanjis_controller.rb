@@ -40,6 +40,6 @@ class Api::V1::UserKanjisController < Api::V1::BaseController
   private
 
   def user_kanji_params
-    params.require(:user_kanji).permit(:user_id, :kanji_id)
+    params.require(:user_kanji).permit(:kanji_id)
   end
 end
