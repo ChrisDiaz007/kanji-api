@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :kanjis, only: [ :index, :show ]
+      resources :user_kanjis
     end
   end
 end
