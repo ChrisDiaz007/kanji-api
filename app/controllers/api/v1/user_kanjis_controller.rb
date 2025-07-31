@@ -1,4 +1,4 @@
-class Api::V1::UserKanjisController < ApplicationController
+class Api::V1::UserKanjisController < Api::V1::BaseController
   def show
     @user_kanji = UserKanji.find(params[:id])
     authorize @user_kanji
