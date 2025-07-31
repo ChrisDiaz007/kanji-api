@@ -1,4 +1,4 @@
-class Api::V1::KanjisController < ApplicationController
+class Api::V1::KanjisController < Api::V1::BaseController
   def index
     @kanjis = Kanji.all
     if params[:character].present?
