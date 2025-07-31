@@ -2,9 +2,15 @@ class User < ApplicationRecord
   has_many :user_kanjis
   has_many :kanjis, through: :user_kanjis
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  before_create :generate_jti
+
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
+         :validatable, :jwt_authenticatable, jwt_revocation_strategy: self
+
+  private
+
+  def generate_jti
+    self.jti ||= SecureRandom.uuid
+  end
+
 end
