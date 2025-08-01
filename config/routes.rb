@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :kanjis, only: [ :index, :show ]
       resources :user_kanjis
+      resources :ocr, only: [ :create ]
     end
   end
 end

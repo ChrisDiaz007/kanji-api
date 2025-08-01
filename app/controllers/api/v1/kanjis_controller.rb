@@ -1,4 +1,9 @@
 class Api::V1::KanjisController < Api::V1::BaseController
+
+  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_after_action :verify_policy_scoped, only: [:index, :show]
+  skip_after_action :verify_authorized, only: [:index, :show]
+
   def index
     @kanjis = Kanji.all
     if params[:character].present?
