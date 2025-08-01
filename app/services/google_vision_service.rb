@@ -2,7 +2,19 @@ require 'google/cloud/vision'
 
 class GoogleVisionService
   def initialize
-    @vision = Google::Cloud::Vision.image_annotator
+    if Rails.env.production?
+      # Use config var for production
+      credentials_json = ENV['GOOGLE_APPLICATION_CREDENTIALS_JSON']
+      if credentials_json
+        credentials = Google::Cloud::Vision::Credentials.new JSON.parse(credentials_json)
+        @vision = Google::Cloud::Vision.image_annotator credentials: credentials
+      else
+        @vision = Google::Cloud::Vision.image_annotator
+      end
+    else
+      # Use file for development
+      @vision = Google::Cloud::Vision.image_annotator
+    end
   end
 
   def extract_text_from_image(image_path)
