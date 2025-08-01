@@ -38,9 +38,10 @@ class GoogleVisionService
 end
 
 
-require 'google/cloud/vision'
-
 # Was not working on heroku.
+
+#require 'google/cloud/vision'
+
 # class GoogleVisionService
 #   def initialize
 #     if Rails.env.production?
